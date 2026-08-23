@@ -49,8 +49,16 @@ def one_hot_encode_labels(labels, num_classes):
     # TODO: Convert a 1-D array of integer class indices into a 2-D one-hot matrix of shape (batch, num_classes).
     return jnp.eye(num_classes)[labels]
 
-# Step 7 - init_linear_layer (not yet solved)
-# TODO: implement
+# Step 7 - init_linear_layer
+import jax
+import jax.numpy as jnp
+
+def init_linear_layer(key, in_dim, out_dim, scale=0.1):
+    """Return {'W': (in_dim, out_dim), 'b': (out_dim,)} for one dense layer."""
+    # TODO: sample W from a scaled normal and set b to zeros, return as a dict.
+    W = sample_normal_matrix(key,(in_dim,out_dim)) * scale
+    b = jnp.zeros(out_dim)
+    return {"W": W, "b": b}
 
 # Step 8 - init_mlp_params (not yet solved)
 # TODO: implement
