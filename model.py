@@ -110,8 +110,10 @@ def log_softmax_logits(logits):
     shifted = logits - max_logits
     return shifted - jnp.log(jnp.sum(jnp.exp(shifted), axis=-1, keepdims=True))
 
-# Step 14 - cross_entropy_loss (not yet solved)
-# TODO: implement
+# Step 14 - cross_entropy_loss
+def cross_entropy_loss(logits, one_hot_targets):
+    log_probs = log_softmax_logits((logits))
+    return -jnp.mean(jnp.sum(one_hot_targets*log_probs,axis = -1))
 
 # Step 15 - classification_accuracy (not yet solved)
 # TODO: implement
